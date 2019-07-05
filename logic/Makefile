@@ -1,0 +1,18 @@
+#logic
+CC = gcc
+CCFLAGS = -g
+
+LIBRARY = logic
+LIBRARY_SOURCES = Change_Dir.c
+LIBRARY_SOURCES += Folder_Up.c
+LIBRARY_SOURCES += Get_Folder_Up.c
+LIBRARY_SOURCES += Open_Folder.c 
+LIBRARY_OBJECTS = $(LIBRARY_SOURCES:.c=.o)
+
+all: libgraph
+
+libgraph: $(LIBRARY_OBJECTS)
+	ar rc lib$(LIBRARY).a $(LIBRARY_OBJECTS)
+
+$(LIBRARY_OBJECTS): $(LIBRARY_SOURCES)
+	$(CC) $(LIBRARY_SOURCES) -c $(CCFLAGS)
